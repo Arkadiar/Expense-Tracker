@@ -8,14 +8,15 @@ function ExpenseItem(justOneAttribute) {
     setTitle("newTitle");
   };
   return (
-    <div className="expense-item">
-      <ExpenseDate date={justOneAttribute.date} />
-      <div className="expense-item__description">
-        <h2>{title}</h2>
-        <div className="expense-item__price">{justOneAttribute.amount}</div>
+    <li>
+      <div className="expense-item">
+        <ExpenseDate date={justOneAttribute.date} />
+        <div className="expense-item__description">
+          <h2>{title}</h2>
+          <div className="expense-item__price">{justOneAttribute.amount}</div>
+        </div>
       </div>
-      <button onClick={clickHandler}>Change Title</button>
-    </div>
+    </li>
   );
 }
 

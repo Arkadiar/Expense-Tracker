@@ -1,4 +1,4 @@
-import ExpenseDate from "./ExpenseDate";
+// import ExpenseDate from "./ExpenseDate";
 import "./ExpenseForm.css";
 import { useState } from "react";
 
@@ -23,7 +23,7 @@ function ExpenseForm(props) {
     e.preventDefault();
     const values = {
       title: title,
-      amount: amount,
+      amount: +amount,
       date: new Date(date),
     };
     props.onSaveExpenseData(values);
@@ -32,6 +32,7 @@ function ExpenseForm(props) {
     setEnteredDate("");
     setEnteredTitle("");
   };
+
   return (
     <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
@@ -61,6 +62,9 @@ function ExpenseForm(props) {
         </div>
       </div>
       <div className="new-expense__actions">
+        <button type="button" onClick={props.hideIt}>
+          Cancel
+        </button>
         <button type="submit">Submit</button>
       </div>
     </form>

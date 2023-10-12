@@ -1,28 +1,28 @@
-import Expense from "./ExpenseItem";
+import ExpenseFilter from "./ExpenseFilter";
+import { useState } from "react";
+import ExpensesList from "./ExpensesList";
+import ExpensesChart from "./ExpensesChart";
 import "./Expenses.css";
 function Expenses(justOneAttribute) {
+  const [currentYear, setDate] = useState("2023");
+
+  const filterChanger = (selectedYear) => {
+    setDate(selectedYear);
+  };
+
+  const filteredItems = justOneAttribute.items.filter((e) => {
+    return e.date.getFullYear() === Number(currentYear);
+  });
   return (
-    <div className="expenses">
-      <Expense
-        title={justOneAttribute.items[0].title}
-        amount={justOneAttribute.items[0].amount}
-        date={justOneAttribute.items[0].date}
-      ></Expense>
-      <Expense
-        title={justOneAttribute.items[1].title}
-        amount={justOneAttribute.items[1].amount}
-        date={justOneAttribute.items[1].date}
-      ></Expense>
-      <Expense
-        title={justOneAttribute.items[2].title}
-        amount={justOneAttribute.items[2].amount}
-        date={justOneAttribute.items[2].date}
-      ></Expense>
-      <Expense
-        title={justOneAttribute.items[3].title}
-        amount={justOneAttribute.items[3].amount}
-        date={justOneAttribute.items[3].date}
-      ></Expense>
+    <div>
+      <div className="expenses">
+        <ExpenseFilter
+          selected={currentYear}
+          onChangeDate={filterChanger}
+        ></ExpenseFilter>
+        <ExpensesChart expenses={filteredItems} />
+        <ExpensesList items={filteredItems} />
+      </div>
     </div>
   );
 }
